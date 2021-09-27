@@ -1,0 +1,21 @@
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Country</th>
+        <th scope="col">Country Code</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tempPhoneNumber of phoneNumbers">
+        <th scope="row"></th>
+        <td>to be inserted ..</td>
+        <td>to be inserted..</td>
+        <td>{{ tempPhoneNumber.number }}</td>
+        <td>{{ tempPhoneNumber.number_state }}</td>
+      </tr>
+    </tbody>
+  </table>

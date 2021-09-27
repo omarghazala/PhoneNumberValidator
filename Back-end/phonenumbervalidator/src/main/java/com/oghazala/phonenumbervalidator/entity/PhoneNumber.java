@@ -15,9 +15,11 @@ public class PhoneNumber {
     @Column(name = "number")
     private String number;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id", nullable = false)
-    private Country country;
+    @Column(name = "number_state")
+    private String number_state;
 
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
 
 }

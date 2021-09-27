@@ -3,6 +3,7 @@ package com.oghazala.phonenumbervalidator.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,6 @@ public class Country {
     private String regex;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "country")
-    private Set<PhoneNumber> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 }
