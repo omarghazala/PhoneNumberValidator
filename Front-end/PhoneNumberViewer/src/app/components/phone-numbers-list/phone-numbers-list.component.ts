@@ -35,7 +35,7 @@ export class PhoneNumbersListComponent implements OnInit {
       this.currentCountryId = +this.route.snapshot.paramMap.get('id')!;
       this.phoneNumberService.getPhoneNumbers(this.currentCountryId).subscribe(
         data => {
-          this.phoneNumbers = data
+          this.phoneNumbersCountries = data
         }
       ) 
     }
@@ -43,18 +43,18 @@ export class PhoneNumbersListComponent implements OnInit {
       this.currentPhoneNumberState = this.route.snapshot.paramMap.get('state')!;
       this.phoneNumberService.getPhoneNumbersState(this.currentPhoneNumberState).subscribe(
         data => {
-          this.phoneNumbers = data
+          this.phoneNumbersCountries = data
         }
       ) 
     }
     else{
-      this.currentCountryId = 1;
-      this.phoneNumberService.getAllPhoneNumbers().subscribe(
-        data => {
-          this.phoneNumbers = data
-          console.log(this.phoneNumbers);
-        }
-      )
+      // this.currentCountryId = 1;
+      // this.phoneNumberService.getAllPhoneNumbers().subscribe(
+      //   data => {
+      //     this.phoneNumbers = data
+      //     console.log(this.phoneNumbers);
+      //   }
+      // )
       
       this.phoneNumberService.getAllPhoneNumbers().subscribe(
         data => {
@@ -62,10 +62,11 @@ export class PhoneNumbersListComponent implements OnInit {
           console.log(data);
         }
       )
-    //}
+    
 
     
     
-  }
+   }
 
+ }
 }

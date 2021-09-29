@@ -15,6 +15,7 @@ import { CountryMenuComponent } from './components/country-menu/country-menu.com
 import { CountryService } from './services/country.service';
 const routes: Routes =[
   {path:'country/:id',component:PhoneNumbersListComponent},
+  {path:'phoneNumbers/:state',component:PhoneNumbersListComponent},
   {path:'country/',component:PhoneNumbersListComponent},
   {path:'phoneNumbers',component:PhoneNumbersListComponent},
   {path:'',redirectTo:'phoneNumbers',pathMatch:'full'},

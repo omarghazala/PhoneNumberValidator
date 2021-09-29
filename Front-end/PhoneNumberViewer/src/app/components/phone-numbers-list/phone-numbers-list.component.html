@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tempPhoneNumber of phoneNumbers">
+      <tr *ngFor="let tempPhoneNumber of phoneNumbersCountries">
         <th scope="row"></th>
-        <td>to be inserted ..</td>
-        <td>to be inserted..</td>
+        <td>{{ tempPhoneNumber.name}}</td>
+        <td>{{ tempPhoneNumber.code}}</td>
         <td>{{ tempPhoneNumber.number }}</td>
-        <td>{{ tempPhoneNumber.number_state }}</td>
+        <td>{{ tempPhoneNumber.numberState }}</td>
       </tr>
     </tbody>
   </table>
