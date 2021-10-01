@@ -14,69 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CountryService {
-    @Autowired
-    private CountryRepository countryRepository;
+public interface CountryService {
 
-    @Transactional
-    public List<CountryDTO> readCountries(){
-        List<CountryDTO> countryDTOS = new ArrayList<>();
-        List<Country> countries = countryRepository.findAll();
-        countries.forEach(country -> {
-            CountryDTO countryDTO = new CountryDTO(country);
-            countryDTOS.add(countryDTO);
-        });
-        return countryDTOS;
-    }
-
-    @Transactional
-    public List<CountryDTO> readCountryCode(String code){
-        List<CountryDTO> countryDTOS = new ArrayList<>();
-        List<Country> countries = countryRepository.findByCode(code, Pageable.unpaged());
-        countries.forEach(country -> {
-            CountryDTO countryDTO = new CountryDTO(country);
-            countryDTOS.add(countryDTO);
-        });
-        return countryDTOS;
-    }
-
-    @Transactional
-    public String createCountry(CountryDTO countryDTO){
-        if(!countryRepository.existsById(countryDTO.getId())){
-            Country country = new Country(countryDTO);
-            countryRepository.save(country);
-            return "country saved";
-        }
-        else{
-            return "country already exists";
-        }
-    }
-
-
-
-    @Transactional
-    public String updateCountry(CountryDTO countryDTO){
-        if(countryRepository.existsById(countryDTO.getId())){
-            Country country = new Country(countryDTO);
-            countryRepository.save(country);
-            return "country updated";
-        }
-        else{
-            return "country no found";
-        }
-    }
-
-    @Transactional
-    public String deleteCountry(Long id){
-        if(countryRepository.existsById(id)){
-            //Country country = new Country(countryDTO);
-            countryRepository.deleteById(id);
-            return "deleted";
-        }
-        else{
-            return "country not found";
-        }
-    }
-
+    List<CountryDTO> readCountries();
+    List<CountryDTO> readCountryCode(String code);
+    String createCountry(CountryDTO countryDTO);
+    String updateCountry(CountryDTO countryDTO);
+    String deleteCountry(Integer id);
 
 }

@@ -1,0 +1,7 @@
+version: "3"
+services:
+    angular-service:
+       container_name: jumia-task
+       build: .
+       ports:
+           - "4242:80"

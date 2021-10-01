@@ -10,11 +10,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "phone_number")
-@Data
 public class PhoneNumber {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "number_id")
-    private Long id;
+    private Integer id;
+
 
     @Column(name = "number")
     private String number;
@@ -42,5 +44,37 @@ public class PhoneNumber {
         this.id = listingDTO.getId();
         this.number = listingDTO.getNumber();
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getNumberState() {
+        return numberState;
+    }
+
+    public void setNumberState(String numberState) {
+        this.numberState = numberState;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-@CrossOrigin("http://localhost:4200")
-public interface PhoneNumberRepository extends JpaRepository<PhoneNumber,Long> {
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:4242"})
+public interface PhoneNumberRepository extends JpaRepository<PhoneNumber,Integer> {
     List<PhoneNumber> findByCountryId(Long id, Pageable page);
     List<PhoneNumber> findByNumberState(String state, Pageable page);
 

@@ -4,10 +4,10 @@ import com.oghazala.phonenumbervalidator.entity.PhoneNumber;
 
 
 public class PhoneNumberDTO {
-    private Long id;
+    private Integer id;
     private String number;
     private String numberState;
-    private Long countryId;
+    private Integer countryId;
 
     public PhoneNumberDTO() {
     }
@@ -19,11 +19,11 @@ public class PhoneNumberDTO {
         this.countryId=phoneNumber.getCountry().getId();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,11 +43,11 @@ public class PhoneNumberDTO {
         this.numberState = numberState;
     }
 
-    public Long getCountryId() {
+    public Integer getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Long countryId) {
+    public void setCountryId(Integer countryId) {
         this.countryId = countryId;
     }
 }

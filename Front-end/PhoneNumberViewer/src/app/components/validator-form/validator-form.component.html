@@ -1,8 +1,9 @@
-<form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form-class">
-    <div class="mb-3">
+<div class="formClass">
+  <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form-class">
+    <!-- <div class="mb-3">
       <label class="form-label">Id :</label>
       <input type="number" class="form-control" id="" formControlName="id">
-    </div>
+    </div> -->
     <div class="mb-3">
       <label class="form-label">Country Code :</label>
       <select class="form-select form-select-lg mb-3" formControlName="code">
@@ -21,5 +22,7 @@
     <!--<a class="btn btn-block btn-primary" routerLink="/addToList" routerLinkActive="active-link" role="button">
       Add
     </a> -->
-</form>
+  </form>
+
+</div>
 

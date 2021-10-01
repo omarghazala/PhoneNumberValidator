@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 
-@CrossOrigin("http://localhost:4200")
-public interface CountryRepository extends JpaRepository<Country,Long> {
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:4242"})
+public interface CountryRepository extends JpaRepository<Country,Integer> {
     List<Country> findByCode(String code, Pageable page);
+    boolean existsByCode(String code);
 }

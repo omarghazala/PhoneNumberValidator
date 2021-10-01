@@ -29,7 +29,6 @@ export class PhoneNumbersListComponent implements OnInit {
   listPhoneNumbers(){
     // check if the id is avaliable
     const hasCountryId : boolean = this.route.snapshot.paramMap.has('id');
-
     const hasState : boolean = this.route.snapshot.paramMap.has('state');
     const hasAdd : boolean = this.route.snapshot.paramMap.has('add');
 

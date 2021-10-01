@@ -8,6 +8,7 @@ class PhoneNumberValidatorApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

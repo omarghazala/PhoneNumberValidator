@@ -26,14 +26,13 @@ public class CountryController {
         return countryService.createCountry(country);
     }
 
-
-
     @RequestMapping(value="updateCountry", method = RequestMethod.PUT)
     public String updateCountry(@RequestBody CountryDTO country){
         return countryService.updateCountry(country);
     }
+
     @RequestMapping(value="deleteCountry", method = RequestMethod.DELETE)
-    public String  deleteCountry(@RequestParam("id") Long id){
+    public String  deleteCountry(@RequestParam("id") Integer id){
         return countryService.deleteCountry(id);
     }
 }

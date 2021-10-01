@@ -16,13 +16,17 @@ import { StateMenuComponent } from './components/state-menu/state-menu.component
 import { FilterMenuComponent } from './components/filter-menu/filter-menu.component';
 import { ValidatorFormComponent } from './components/validator-form/validator-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServerDownPageComponent } from './components/server-down-page/server-down-page.component';
+import { ClearFilterMenuComponent } from './components/clear-filter-menu/clear-filter-menu.component';
+
 
 const routes: Routes =[
   {path:'country/:id',component:PhoneNumbersListComponent},
   {path:'phoneNumbers/:state',component:PhoneNumbersListComponent},
   {path:'country/',component:PhoneNumbersListComponent},
   {path:'phoneNumbers',component:PhoneNumbersListComponent},
-  {path:'addToList',component:PhoneNumbersListComponent},
+  {path:'addList',component:PhoneNumbersListComponent},
+  {path:'clearFilter',component:PhoneNumbersListComponent},
   {path:'',redirectTo:'phoneNumbers',pathMatch:'full'},
   {path:'**',redirectTo:'phoneNumbers',pathMatch:'full'}
 ]
@@ -34,7 +38,9 @@ const routes: Routes =[
     CountryMenuComponent,
     StateMenuComponent,
     FilterMenuComponent,
-    ValidatorFormComponent
+    ValidatorFormComponent,
+    ServerDownPageComponent,
+    ClearFilterMenuComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
