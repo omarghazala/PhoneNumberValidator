@@ -1,0 +1,25 @@
+<form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form-class">
+    <div class="mb-3">
+      <label class="form-label">Id :</label>
+      <input type="number" class="form-control" id="" formControlName="id">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Country Code :</label>
+      <select class="form-select form-select-lg mb-3" formControlName="code">
+        <!-- <option selected>Country</option>  -->
+        <option *ngFor="let tempCountry of countries; let i = index" [ngValue]="tempCountry.code" aria-placeholder="Country code">
+            {{ tempCountry.code }}
+        </option>
+      </select>
+      
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Phone Number :</label>
+        <input type="number" class="form-control" id="" formControlName="number">
+    </div>
+    <button type="submit" class="btn btn-block btn-primary">Add</button>
+    <!--<a class="btn btn-block btn-primary" routerLink="/addToList" routerLinkActive="active-link" role="button">
+      Add
+    </a> -->
+</form>
+

@@ -4,6 +4,7 @@ import com.oghazala.phonenumbervalidator.dto.CountryDTO;
 import com.oghazala.phonenumbervalidator.entity.Country;
 import com.oghazala.phonenumbervalidator.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,17 @@ public class CountryService {
     public List<CountryDTO> readCountries(){
         List<CountryDTO> countryDTOS = new ArrayList<>();
         List<Country> countries = countryRepository.findAll();
+        countries.forEach(country -> {
+            CountryDTO countryDTO = new CountryDTO(country);
+            countryDTOS.add(countryDTO);
+        });
+        return countryDTOS;
+    }
+
+    @Transactional
+    public List<CountryDTO> readCountryCode(String code){
+        List<CountryDTO> countryDTOS = new ArrayList<>();
+        List<Country> countries = countryRepository.findByCode(code, Pageable.unpaged());
         countries.forEach(country -> {
             CountryDTO countryDTO = new CountryDTO(country);
             countryDTOS.add(countryDTO);

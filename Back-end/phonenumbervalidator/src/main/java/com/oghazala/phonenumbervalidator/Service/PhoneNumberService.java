@@ -1,22 +1,29 @@
 package com.oghazala.phonenumbervalidator.Service;
 
+import com.oghazala.phonenumbervalidator.dto.CountryDTO;
 import com.oghazala.phonenumbervalidator.dto.ListingDTO;
 import com.oghazala.phonenumbervalidator.dto.PhoneNumberDTO;
+import com.oghazala.phonenumbervalidator.entity.Country;
 import com.oghazala.phonenumbervalidator.entity.PhoneNumber;
 import com.oghazala.phonenumbervalidator.repository.PhoneNumberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.print.DocFlavor;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 public class PhoneNumberService {
     @Autowired
     private PhoneNumberRepository phoneNumberRepository;
+
+    @Autowired
+    private CountryService countryService;
 
     @Transactional
     public List<ListingDTO> readPhoneNumbers(){
@@ -52,16 +59,50 @@ public class PhoneNumberService {
     }
 
     @Transactional
-    public String createPhoneNumber(PhoneNumberDTO phoneNumberDto){
-        if(!phoneNumberRepository.existsById(phoneNumberDto.getId())){
-            PhoneNumber phoneNumber = new PhoneNumber(phoneNumberDto);
-            phoneNumberRepository.save(phoneNumber);
+    public String createPhoneNumber(ListingDTO listingDTO){
+        String result = null;
+        if(!phoneNumberRepository.existsById(listingDTO.getId())){
+
+            PhoneNumber phoneNumber = new PhoneNumber(listingDTO);
+            List<CountryDTO> countryDTOS =  this.countryService.readCountryCode(listingDTO.getCode());
+
+            List<Country> countries = new ArrayList<>();
+            countryDTOS.forEach(countryDTO -> {
+                Country country = new Country(countryDTO);
+                countries.add(country);
+            });
+            countries.forEach(country -> {
+                String wholeNumber =  country.getCode()+" "+phoneNumber.getNumber().toString();
+                System.out.println(Pattern.compile(country.getRegex()).matcher(wholeNumber).matches());
+                System.out.print(country.getRegex());
+                if(Pattern.matches(country.getRegex(),wholeNumber)){
+                    phoneNumber.setNumberState("valid");
+                }
+                else{
+                    phoneNumber.setNumberState("not valid");
+                }
+                phoneNumber.setCountry(country);
+                phoneNumberRepository.save(phoneNumber);
+            });
+
             return "phone number saved";
         }
         else{
             return "phone number already exists";
         }
     }
+
+//    @Transactional
+//    public String createPhoneNumber(PhoneNumberDTO phoneNumberDto){
+//        if(!phoneNumberRepository.existsById(phoneNumberDto.getId())){
+//            PhoneNumber phoneNumber = new PhoneNumber(phoneNumberDto);
+//            phoneNumberRepository.save(phoneNumber);
+//            return "phone number saved";
+//        }
+//        else{
+//            return "phone number already exists";
+//        }
+//    }
 
     @Transactional
     public String updatePhoneNumber(PhoneNumberDTO phoneNumberDTO){

@@ -3,7 +3,11 @@ export class Listing {
     number?: string;
     numberState?: string;
     countryId?:string;
-    name?:string
-    code?:string
+    name?:string;
+    code?:string;
+
+    public constructor(init?: Partial<Listing>) {
+        Object.assign(this, init);
+    }
 }
 

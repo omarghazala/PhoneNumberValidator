@@ -1,6 +1,7 @@
 package com.oghazala.phonenumbervalidator.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.oghazala.phonenumbervalidator.dto.ListingDTO;
 import com.oghazala.phonenumbervalidator.dto.PhoneNumberDTO;
 import lombok.Data;
 import net.minidev.json.annotate.JsonIgnore;
@@ -35,5 +36,11 @@ public class PhoneNumber {
         this.numberState = phoneNumberDto.getNumberState();
         this.country = new Country();
         this.country.setId(phoneNumberDto.getCountryId());
+    }
+
+    public PhoneNumber(ListingDTO listingDTO){
+        this.id = listingDTO.getId();
+        this.number = listingDTO.getNumber();
+
     }
 }

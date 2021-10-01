@@ -45,9 +45,13 @@ public class PhoneNumberController {
     }
 
     @RequestMapping(value="createPhoneNumber", method = RequestMethod.POST)
-    public String createPhoneNumber(@RequestBody PhoneNumberDTO phoneNumber){
-        return phoneNumberService.createPhoneNumber(phoneNumber);
+    public String createPhoneNumber(@RequestBody ListingDTO listingDTO){
+        return phoneNumberService.createPhoneNumber(listingDTO);
     }
+//    @RequestMapping(value="createPhoneNumber", method = RequestMethod.POST)
+//    public String createPhoneNumber(@RequestBody PhoneNumberDTO phoneNumber){
+//        return phoneNumberService.createPhoneNumber(phoneNumber);
+//    }
 
     @RequestMapping(value="updatePhoneNumber", method = RequestMethod.PUT)
     public String updatePhoneNumber(@RequestBody PhoneNumberDTO phoneNumber){

@@ -2,6 +2,7 @@ package com.oghazala.phonenumbervalidator.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.oghazala.phonenumbervalidator.dto.CountryDTO;
+import com.oghazala.phonenumbervalidator.dto.ListingDTO;
 import com.oghazala.phonenumbervalidator.dto.PhoneNumberDTO;
 import lombok.Data;
 import net.minidev.json.annotate.JsonIgnore;
@@ -42,5 +43,9 @@ public class Country {
         this.regex = countryDTO.getRegex();
 
 
+    }
+
+    public Country(ListingDTO listingDTO){
+        this.code = listingDTO.getCode();
     }
 }

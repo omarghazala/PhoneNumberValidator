@@ -11,7 +11,6 @@ import { PhoneNumberService } from 'src/app/services/phone-number.service';
 export class CountryMenuComponent implements OnInit {
 
   countries: Country[]=[];
-  states:number[]=[];
 
   constructor(private phoneNumberService:PhoneNumberService,private countryService:CountryService) { }
 

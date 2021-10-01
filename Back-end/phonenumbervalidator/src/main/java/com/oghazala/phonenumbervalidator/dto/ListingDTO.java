@@ -18,6 +18,9 @@ public class ListingDTO extends PhoneNumberDTO{
         this.name = phoneNumber.getCountry().getName();
         this.code = phoneNumber.getCountry().getCode();
     }
+    public ListingDTO(ListingDTO listingDTO){
+
+    }
 
     public String getName() {
         return name;

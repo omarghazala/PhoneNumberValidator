@@ -11,18 +11,20 @@ import { Listing } from '../common/listing';
 })
 export class PhoneNumberService {
 
-  private phoneNumbersUrl = "http://localhost:8080/api/phoneNumbers";
+  
   private phoneNumbersCountriesUrl = "http://localhost:8080/api";
   
-
   constructor(private httpCLient:HttpClient) {
   }
 
-  // getAllPhoneNumbers():Observable<PhoneNumber[]>{
-  //   return this.httpCLient.get<GetResponsePhoneNumber>(this.phoneNumbersUrl).pipe(
-  //     map(response =>response._embedded.phoneNumbers)
-  //   )
-  // }
+  addPhoneNumber(listing:Listing):Observable<any>{
+    const headers = { 'content-type': 'application/json'}  
+    listing.number= listing.number?.toString();
+    const body=JSON.stringify(listing);
+    //console.log(number)
+    console.log(body)
+    return this.httpCLient.post(`${this.phoneNumbersCountriesUrl}/createPhoneNumber`,body,{headers:headers})
+  }
 
   getAllPhoneNumbers():Observable<Listing[]>{
     return this.httpCLient.get<Listing[]>(`${this.phoneNumbersCountriesUrl}/readPhoneNumbers`)
@@ -35,17 +37,6 @@ export class PhoneNumberService {
     return this.httpCLient.get<Listing[]>(searchUrl)
   }
 
-  
-  
-  // getPhoneNumbers(theCountryId:number):Observable<PhoneNumber[]>{
-
-  //   const searchUrl = `${this.phoneNumbersUrl}/search/findByCountryId?id=${theCountryId}`;
-
-  //   return this.httpCLient.get<GetResponsePhoneNumber>(searchUrl).pipe(
-  //     map(response =>response._embedded.phoneNumbers)
-  //   )
-  // }
-
   getPhoneNumbersState(theState:string):Observable<PhoneNumber[]>{
 
     const searchUrl = `${this.phoneNumbersCountriesUrl}/readPhoneNumberByNumberState?numberState=${theState}`;
@@ -54,24 +45,4 @@ export class PhoneNumberService {
     
   }
 
-  // getPhoneNumbersState(theState:string):Observable<PhoneNumber[]>{
-
-  //   const searchUrl = `${this.phoneNumbersUrl}/search/findByNumberState?state=${theState}`;
-
-  //   return this.httpCLient.get<GetResponsePhoneNumber>(searchUrl).pipe(
-  //     map(response =>response._embedded.phoneNumbers)
-  //   )
-  // }
-
-
 }
-
-
-
-
-// interface GetResponsePhoneNumber{
-//   _embedded:{
-//     phoneNumbers:PhoneNumber[]
-//   }
-// }
-

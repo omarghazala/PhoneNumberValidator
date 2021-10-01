@@ -13,6 +13,7 @@ export class PhoneNumbersListComponent implements OnInit {
 
   phoneNumbers: PhoneNumber[] =[];
   phoneNumbersCountries: Listing[] =[];
+  listing!: Listing;
   currentCountryId!:number;
   currentPhoneNumberState!:string;
 
@@ -30,6 +31,7 @@ export class PhoneNumbersListComponent implements OnInit {
     const hasCountryId : boolean = this.route.snapshot.paramMap.has('id');
 
     const hasState : boolean = this.route.snapshot.paramMap.has('state');
+    const hasAdd : boolean = this.route.snapshot.paramMap.has('add');
 
     if(hasCountryId){
       this.currentCountryId = +this.route.snapshot.paramMap.get('id')!;
@@ -59,7 +61,7 @@ export class PhoneNumbersListComponent implements OnInit {
       this.phoneNumberService.getAllPhoneNumbers().subscribe(
         data => {
           this.phoneNumbersCountries = data
-          console.log(data);
+          //console.log(data);
         }
       )
     
