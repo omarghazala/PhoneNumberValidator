@@ -18,7 +18,4 @@ public interface PhoneNumberRepository extends JpaRepository<PhoneNumber,Integer
     List<PhoneNumber> findByCountryId(Integer id, Pageable page);
     List<PhoneNumber> findByNumberState(String state, Pageable page);
 
-
-//    @Query(value = "SELECT pn from PhoneNumber pn join pn.country")
-//    List<PhoneNumber> readPhoneNumberByCountryId(Pageable pageable);
 }

@@ -50,7 +50,6 @@ export class PhoneNumbersListComponent implements OnInit {
       this.phoneNumberService.getAllPhoneNumbers().subscribe(
         data => {
           this.phoneNumbersCountries = data
-          //console.log(data);
         }
       )
     

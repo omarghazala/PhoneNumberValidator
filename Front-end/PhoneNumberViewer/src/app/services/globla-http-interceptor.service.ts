@@ -22,13 +22,13 @@ export class GloblaHttpInterceptorService implements HttpInterceptor{
             this.router.navigate(["/addFail"])
             break;
           }
-          case 503 :{
-            this.router.navigate(["/serverDown"])
+          case 200 :{
+            this.router.navigate(["/phoneNumbers"])
             break;
           }
          
           default : {
-            this.router.navigate(["/phoneNumbers"])
+            this.router.navigate(["/serverDown"])
             break;
           }
         }
@@ -45,7 +45,7 @@ export class GloblaHttpInterceptorService implements HttpInterceptor{
  
     return next.handle(req).pipe(
       catchError((error) => {
-        console.log('error in intercept')
+        console.log('error in intercept 2')
         console.error(error);
 
         return throwError(error.message);
@@ -65,7 +65,7 @@ export class GloblaHttpInterceptorService implements HttpInterceptor{
           if (error.error instanceof ErrorEvent) {
             console.error("Error Event");
           } else {
-            console.log(`error status : ${error.status} ${error.statusText}`);
+            console.log(`error status 3 : ${error.status} ${error.statusText}`);
             switch (error.status) {
               case 401:      //login
               this.router.navigate(['/error'])
