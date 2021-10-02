@@ -1,8 +1,14 @@
 
-Phone Number Validator Application
+# **Phone Number Validator Application**
 
 - This is a full stack application using Angular for Front-end and Spring-Boot for the Back-end 
+
+# **Technologies**
+
 - Angular cli version : 12.7.0  , JDK version : 17 
+
+# **Installation**
+
 - The app is still not dockerized since I  am facing some issues with my docker enviroment
 - The branch "master" is the default branch I am working on
 - You can listen to the front end at "http://localhost:4200/" using command "ng serve" and the backend at "http://localhost:8080/"
