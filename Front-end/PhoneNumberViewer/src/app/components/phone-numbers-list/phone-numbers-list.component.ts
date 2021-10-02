@@ -26,6 +26,7 @@ export class PhoneNumbersListComponent implements OnInit {
     })
   }
 
+  
   listPhoneNumbers(){
     const hasCountryId : boolean = this.route.snapshot.paramMap.has('id');
     const hasState : boolean = this.route.snapshot.paramMap.has('state');
@@ -35,6 +36,7 @@ export class PhoneNumbersListComponent implements OnInit {
       this.phoneNumberService.getPhoneNumbers(this.currentCountryId).subscribe(
         data => {
           this.phoneNumbersCountries = data
+          
         }
       ) 
     }
@@ -50,13 +52,13 @@ export class PhoneNumbersListComponent implements OnInit {
       this.phoneNumberService.getAllPhoneNumbers().subscribe(
         data => {
           this.phoneNumbersCountries = data
+
         }
       )
-    
-
-    
     
    }
 
  }
+
+
 }

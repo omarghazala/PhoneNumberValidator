@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { PhoneNumber } from '../common/phone-number';
 import { catchError, map } from 'rxjs/operators';
-import { Country } from '../common/country';
 import { Listing } from '../common/listing';
 
 @Injectable({
@@ -21,8 +20,6 @@ export class PhoneNumberService {
     const headers = { 'content-type': 'application/json'}  
     listing.number= listing.number?.toString();
     const body=JSON.stringify(listing);
-    //console.log(number)
-    console.log(body)
     return this.httpCLient.post(`${this.phoneNumbersCountriesUrl}/createPhoneNumber`,body,{headers:headers})
   }
 

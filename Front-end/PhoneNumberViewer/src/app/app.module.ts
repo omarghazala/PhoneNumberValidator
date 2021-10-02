@@ -22,6 +22,7 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
 import { GloblaHttpInterceptorService } from './services/globla-http-interceptor.service';
 import { AddFailPageComponent } from './components/add-fail-page/add-fail-page.component';
 import { BackToFormComponent } from './components/back-to-form/back-to-form.component';
+import { CountryCodePipe } from './pipes/CountryCodePipe';
 
 
 const routes: Routes =[
@@ -49,7 +50,8 @@ const routes: Routes =[
     ServerDownPageComponent,
     ClearFilterMenuComponent,
     AddFailPageComponent,
-    BackToFormComponent
+    BackToFormComponent,
+    CountryCodePipe
   ],
   imports: [
     RouterModule.forRoot(routes),
