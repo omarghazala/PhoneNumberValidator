@@ -15,8 +15,9 @@ import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200","http://localhost:4242"})
 public interface PhoneNumberRepository extends JpaRepository<PhoneNumber,Integer> {
-    List<PhoneNumber> findByCountryId(Long id, Pageable page);
+    List<PhoneNumber> findByCountryId(Integer id, Pageable page);
     List<PhoneNumber> findByNumberState(String state, Pageable page);
+
 
 //    @Query(value = "SELECT pn from PhoneNumber pn join pn.country")
 //    List<PhoneNumber> readPhoneNumberByCountryId(Pageable pageable);

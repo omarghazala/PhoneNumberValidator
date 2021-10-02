@@ -2,8 +2,6 @@ package com.oghazala.phonenumbervalidator.dto;
 
 import com.oghazala.phonenumbervalidator.entity.PhoneNumber;
 
-import javax.persistence.Column;
-
 public class ListingDTO extends PhoneNumberDTO{
 
     private String name;
@@ -17,9 +15,6 @@ public class ListingDTO extends PhoneNumberDTO{
         super(phoneNumber);
         this.name = phoneNumber.getCountry().getName();
         this.code = phoneNumber.getCountry().getCode();
-    }
-    public ListingDTO(ListingDTO listingDTO){
-
     }
 
     public String getName() {

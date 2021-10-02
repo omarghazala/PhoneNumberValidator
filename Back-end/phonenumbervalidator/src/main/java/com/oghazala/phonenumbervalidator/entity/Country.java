@@ -3,21 +3,14 @@ package com.oghazala.phonenumbervalidator.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.oghazala.phonenumbervalidator.dto.CountryDTO;
 import com.oghazala.phonenumbervalidator.dto.ListingDTO;
-import com.oghazala.phonenumbervalidator.dto.PhoneNumberDTO;
-import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Country")
 public class Country {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "country_id")
     private Integer id;
 
@@ -36,6 +29,13 @@ public class Country {
     private List<PhoneNumber> phoneNumbers;
 
     public Country() {
+    }
+
+    public Country(Integer id, String code, String name, String regex) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.regex = regex;
     }
 
     public Country(CountryDTO countryDTO) {

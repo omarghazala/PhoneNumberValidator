@@ -3,8 +3,6 @@ package com.oghazala.phonenumbervalidator.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.oghazala.phonenumbervalidator.dto.ListingDTO;
 import com.oghazala.phonenumbervalidator.dto.PhoneNumberDTO;
-import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -13,7 +11,6 @@ import javax.persistence.*;
 public class PhoneNumber {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "number_id")
     private Integer id;
 
@@ -24,12 +21,23 @@ public class PhoneNumber {
     @Column(name = "number_state")
     private String numberState;
 
+    @Column(name = "number_name")
+    private String numberName;
+
     @ManyToOne
     @JoinColumn(name = "country_id")
     @JsonBackReference
     private Country country;
 
     public PhoneNumber() {
+    }
+
+    public PhoneNumber(Integer id, String number, String numberState, String numberName) {
+        this.id = id;
+        this.number = number;
+        this.numberState = numberState;
+        this.numberName = numberName;
+
     }
 
     public PhoneNumber(PhoneNumberDTO phoneNumberDto) {
@@ -43,6 +51,7 @@ public class PhoneNumber {
     public PhoneNumber(ListingDTO listingDTO){
         this.id = listingDTO.getId();
         this.number = listingDTO.getNumber();
+        this.numberName = listingDTO.getNumberName();
 
     }
 
@@ -68,6 +77,14 @@ public class PhoneNumber {
 
     public void setNumberState(String numberState) {
         this.numberState = numberState;
+    }
+
+    public String getNumberName() {
+        return numberName;
+    }
+
+    public void setNumberName(String numberName) {
+        this.numberName = numberName;
     }
 
     public Country getCountry() {

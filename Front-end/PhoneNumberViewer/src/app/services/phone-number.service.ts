@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { PhoneNumber } from '../common/phone-number';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Country } from '../common/country';
 import { Listing } from '../common/listing';
 
@@ -26,8 +26,28 @@ export class PhoneNumberService {
     return this.httpCLient.post(`${this.phoneNumbersCountriesUrl}/createPhoneNumber`,body,{headers:headers})
   }
 
+
+  getCount():Observable<number>{
+    return this.httpCLient.get<number>(`${this.phoneNumbersCountriesUrl}/readCount`).pipe(
+      catchError((err)=>{
+        console.log('error caught in counting')
+        console.error(err);
+        return throwError(err);
+      })
+    )
+    
+  }
+
+  
+  
   getAllPhoneNumbers():Observable<Listing[]>{
-    return this.httpCLient.get<Listing[]>(`${this.phoneNumbersCountriesUrl}/readPhoneNumbers`)
+    return this.httpCLient.get<Listing[]>(`${this.phoneNumbersCountriesUrl}/readPhoneNumbers`).pipe(
+      catchError((err)=>{
+        console.log('error caught in service')
+        console.error(err);
+        return throwError(err);
+      })
+    )
     
   }
 

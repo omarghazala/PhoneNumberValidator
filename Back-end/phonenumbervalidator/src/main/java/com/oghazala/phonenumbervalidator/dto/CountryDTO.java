@@ -2,8 +2,6 @@ package com.oghazala.phonenumbervalidator.dto;
 
 import com.oghazala.phonenumbervalidator.entity.Country;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 public class CountryDTO {
 
@@ -14,6 +12,13 @@ public class CountryDTO {
     private String regex;
 
     public CountryDTO() {
+    }
+
+    public CountryDTO(Integer id, String name, String code, String regex) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.regex = regex;
     }
 
     public CountryDTO(Country country) {

@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
 import { PhoneNumberService } from './services/phone-number.service';
 import { PhoneNumbersListComponent } from './components/phone-numbers-list/phone-numbers-list.component';
 import { Routes,RouterModule}  from '@angular/router';
@@ -18,6 +18,10 @@ import { ValidatorFormComponent } from './components/validator-form/validator-fo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServerDownPageComponent } from './components/server-down-page/server-down-page.component';
 import { ClearFilterMenuComponent } from './components/clear-filter-menu/clear-filter-menu.component';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { GloblaHttpInterceptorService } from './services/globla-http-interceptor.service';
+import { AddFailPageComponent } from './components/add-fail-page/add-fail-page.component';
+import { BackToFormComponent } from './components/back-to-form/back-to-form.component';
 
 
 const routes: Routes =[
@@ -27,6 +31,9 @@ const routes: Routes =[
   {path:'phoneNumbers',component:PhoneNumbersListComponent},
   {path:'addList',component:PhoneNumbersListComponent},
   {path:'clearFilter',component:PhoneNumbersListComponent},
+  {path:'serverDown',component:ServerDownPageComponent},
+  {path:'addFail',component:AddFailPageComponent},
+  {path:'validatorForm',component:ValidatorFormComponent},
   {path:'',redirectTo:'phoneNumbers',pathMatch:'full'},
   {path:'**',redirectTo:'phoneNumbers',pathMatch:'full'}
 ]
@@ -40,7 +47,9 @@ const routes: Routes =[
     FilterMenuComponent,
     ValidatorFormComponent,
     ServerDownPageComponent,
-    ClearFilterMenuComponent
+    ClearFilterMenuComponent,
+    AddFailPageComponent,
+    BackToFormComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -51,7 +60,12 @@ const routes: Routes =[
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [PhoneNumberService,CountryService],
+  providers: [
+    PhoneNumberService,
+    CountryService,
+    { provide: HTTP_INTERCEPTORS,    useClass: GloblaHttpInterceptorService,    multi: true  },
+    { provide: ErrorHandler, useClass:GlobalErrorHandlerService} 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

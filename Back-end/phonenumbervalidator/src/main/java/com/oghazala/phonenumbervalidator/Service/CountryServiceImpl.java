@@ -6,7 +6,6 @@ import com.oghazala.phonenumbervalidator.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +71,7 @@ public class CountryServiceImpl implements CountryService{
     public String deleteCountry(Integer id){
         if(countryRepository.existsById(id)){
             countryRepository.deleteById(id);
-            return "deleted";
+            return "country deleted";
         }
         else{
             return "country not found";

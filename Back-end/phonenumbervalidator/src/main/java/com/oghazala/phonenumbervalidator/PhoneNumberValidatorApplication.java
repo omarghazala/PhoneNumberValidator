@@ -8,7 +8,6 @@ public class PhoneNumberValidatorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PhoneNumberValidatorApplication.class, args);
-		System.out.println("Helllloooooo");
 	}
 
 }

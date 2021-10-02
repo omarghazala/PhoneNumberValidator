@@ -16,10 +16,7 @@ export class ValidatorFormComponent implements OnInit {
   countries: Country[]=[];
   listing!:Listing;
   formData!: FormGroup;
-  
-  //listing!:Listing;
-  
-  
+  idCounter!:number;
   
   constructor(private countryService:CountryService,
               private phoneNumberService:PhoneNumberService,
@@ -29,6 +26,7 @@ export class ValidatorFormComponent implements OnInit {
                 this.formData = this.formBuilder.group({
                   id: '',
                   number: '',
+                  numberName:'',
                   code:''
                 });
               }
@@ -38,6 +36,12 @@ export class ValidatorFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.listCountriesCodes()
+    this.phoneNumberService.getCount().subscribe(
+      data=>{
+        this.idCounter = data
+      }
+    )
+    console.log(this.idCounter)
   }
 
   listCountriesCodes(){
@@ -58,7 +62,12 @@ export class ValidatorFormComponent implements OnInit {
   }
 
   addNewListing(formData:FormGroup){
+    
+    
+    formData.get('id')?.setValue(this.idCounter)
+    console.log(formData.get('id'))
     this.listing = new Listing(formData.value)
+
     this.phoneNumberService.addPhoneNumber(this.listing).subscribe(list =>{
     });
 
